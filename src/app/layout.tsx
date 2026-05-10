@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "../../components/theme-provider";
-import { PageTransition } from "../../components/page-transition";
+import { ThemeProvider } from "../components/theme-provider";
+import { PageTransition } from "../components/page-transition";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sebastianweszler.com"),
