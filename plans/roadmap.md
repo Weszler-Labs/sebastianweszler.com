@@ -21,10 +21,10 @@
 - [x] Performance optimization (image optimization, LCP improvements)
 - [x] Accessibility audit (WCAG 2.1 AA)
 
-## Milestone 4: Advanced — PLANNED
+## Milestone 4: Advanced — IN PROGRESS
 - [ ] Analytics dashboard
 - [ ] Newsletter signup
-- [ ] i18n support (English + Polish)
+- [x] i18n support (English + Polish)
 
 ## Recommended Tech Stack
 - **Framework:** Next.js 15+ (App Router)

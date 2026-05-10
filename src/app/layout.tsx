@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../components/theme-provider";
-import { PageTransition } from "../components/page-transition";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sebastianweszler.com"),
@@ -33,46 +44,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentYear = new Date().getFullYear();
-  
   return (
-    <html lang="en">
-      <body className="min-h-full flex flex-col font-sans">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white dark:focus:bg-zinc-50 dark:focus:text-zinc-900 focus:rounded-lg"
         >
-          <main className="flex-1 flex flex-col items-center justify-center p-8 sm:p-24">
-            <div className="w-full max-w-2xl bg-white dark:bg-zinc-900 shadow-sm border border-zinc-200 dark:border-zinc-800 rounded-2xl p-8 sm:p-12">
-              <PageTransition>{children}</PageTransition>
-              
-              <footer className="mt-16 pt-8 border-t border-zinc-100 dark:border-zinc-800 flex flex-col items-center gap-4 text-sm text-zinc-500">
-                <div className="flex gap-6">
-                  {[
-                    { name: "GitHub", href: "https://github.com/SWeszler" },
-                    { name: "LinkedIn", href: "https://linkedin.com/in/sebastianweszler" },
-                    { name: "Medium", href: "https://medium.com/@s.weszler" },
-                    { name: "LeetCode", href: "https://leetcode.com/sweszler/" },
-                    { name: "Email", href: "mailto:sebastian.weszler@gmail.com" },
-                  ].map((link) => (
-                    <a 
-                      key={link.name} 
-                      href={link.href} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="hover:text-zinc-900 dark:hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </a>
-                  ))}
-                </div>
-                <p>&copy; {currentYear} Sebastian Weszler. All rights reserved.</p>
-              </footer>
-            </div>
-          </main>
-        </ThemeProvider>
+          Skip to main content
+        </a>
+        <main id="main-content" className="flex-1 flex flex-col items-center justify-center p-8 sm:p-24">
+          <div className="w-full max-w-2xl bg-white dark:bg-zinc-900 shadow-sm border border-zinc-200 dark:border-zinc-800 rounded-2xl p-8 sm:p-12">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   );

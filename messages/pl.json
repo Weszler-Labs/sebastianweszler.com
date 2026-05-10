@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Strona Główna",
+    "about": "O Mnie",
+    "projects": "Projekty",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "resume": "CV",
+    "skipToMain": "Przejdź do treści",
+    "toggleLanguage": "Przełącz na Angielski"
+  },
+  "footer": {
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "visitProfile": "Odwiedź mój profil {name}"
+  },
+  "home": {
+    "replayAnimation": "Odtwórz animację",
+    "title": "Sebastian Weszler",
+    "subtitle": "Inżynier Oprogramowania | Entuzjasta Technologii | Rozwiązywacz Problemów",
+    "description": "Pasjonuję się wykorzystywaniem technologii do rozwiązywania problemów i poprawiania jakości życia. Zawsze szukam nowych sposobów na innowację i tworzenie. Jeśli masz pomysł, porozmawiajmy!",
+    "moreAboutMe": "Więcej o mnie..."
+  },
+  "about": {
+    "title": "O Mnie",
+    "intro": "Urodzony i wychowany w Polsce, studiowałem Inżynierię Elektroniczną, co położyło podwaliny pod moją techniczną ścieżkę kariery.",
+    "paragraph1": "Po studiach pracowałem jako Technik, zanim rozpocząłem działalność gospodarczą, zakładając i prowadząc odnoszący sukcesy sklep internetowy z rowerami.",
+    "paragraph2": "Moja pasja do tworzenia i innowacji ostatecznie zaprowadziła mnie z powrotem do technicznych korzeni. Dziś jestem pełnoetatowym Inżynierem Oprogramowania, wykorzystującym moje różnorodne doświadczenie do budowania solidnych, skoncentrowanych na użytkowniku aplikacji.",
+    "technicalSkills": "Umiejętności Techniczne",
+    "backToHome": "Powrót do strony głównej"
+  },
+  "projects": {
+    "title": "Projekty",
+    "description": "Wybór mojej pracy open-source i eksperymentów. Większość mojej ostatniej pracy opiera się na Pythonie i JavaScript.",
+    "experience": "Doświadczenie",
+    "experienceLeadTitle": "Lead Full-stack Software Engineer",
+    "experienceLeadPeriod": "Obecnie",
+    "experienceLeadDesc": "Kierowanie architekturą techniczną i implementacją różnych projektów, z naciskiem na wydajność, skalowalność i doświadczenie użytkownika.",
+    "experienceEntrepreneurTitle": "Przedsiębiorca i Właściciel Sklepu Internetowego",
+    "experienceEntrepreneurPeriod": "Poprzednio",
+    "experienceEntrepreneurDesc": "Założyłem i prowadziłem odnoszący sukcesy sklep internetowy z rowerami, zarządzając wszystkim od łańcucha dostaw po obsługę klienta i marketing cyfrowy.",
+    "experienceTechTitle": "Technik",
+    "experienceTechPeriod": "Początek Kariery",
+    "experienceTechDesc": "Praca w rolach technicznych po studiach z Inżynierii Elektronicznej, zdobywanie praktycznego doświadczenia ze sprzętem i systemami."
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Przemyślenia na temat inżynierii oprogramowania, technologii i budowania produktów.",
+    "readMore": "Czytaj więcej",
+    "noPosts": "Brak wpisów. Bądź na bieżąco!",
+    "backToBlog": "Powrót do bloga",
+    "thanksForReading": "Dzięki za przeczytanie! Jeśli masz pytania lub uwagi, śmiało się skontaktuj."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Masz pomysł lub chcesz pogadać? Zawsze jestem otwarty na nowe możliwości i współpracę.",
+    "email": "Email",
+    "socials": "Media Społecznościowe",
+    "messageSent": "Wiadomość Wysłana!",
+    "messageSentDesc": "Dzięki za kontakt. Odpowiem najszybciej jak to możliwe.",
+    "sendAnother": "Wyślij kolejną wiadomość",
+    "name": "Imię i Nazwisko",
+    "namePlaceholder": "Twoje imię",
+    "emailLabel": "Email",
+    "emailPlaceholder": "twoj.email@przyklad.com",
+    "message": "Wiadomość",
+    "messagePlaceholder": "Jak mogę Ci pomóc?",
+    "sendMessage": "Wyślij Wiadomość"
+  },
+  "resume": {
+    "title": "CV",
+    "description": "Lead Full-stack Software Engineer z pasją do budowania wysokiej jakości oprogramowania.",
+    "downloadPdf": "Pobierz PDF",
+    "experience": "Doświadczenie",
+    "experienceLeadTitle": "Lead Full-stack Software Engineer",
+    "experienceLeadPeriod": "2023 — Obecnie",
+    "experienceLeadDesc": "Kierowanie rozwojem technicznym i architekturą złożonych aplikacji webowych. Mentoring młodszych programistów i promowanie najlepszych praktyk inżynieryjnych.",
+    "experienceEntrepreneurTitle": "Przedsiębiorca i Właściciel Sklepu",
+    "experienceEntrepreneurPeriod": "2018 — 2023",
+    "experienceEntrepreneurDesc": "Z powodzeniem założyłem i rozwinąłem internetowy biznes detaliczny z rowerami. Opracowałem niestandardowe narzędzia do zarządzania zapasami i relacjami z klientami.",
+    "experienceTechTitle": "Technik",
+    "experienceTechPeriod": "2015 — 2018",
+    "experienceTechDesc": "Konserwacja i rozwiązywanie problemów z systemami elektronicznymi i sprzętem.",
+    "education": "Edukacja",
+    "educationTitle": "Inżynieria Elektroniczna",
+    "educationPeriod": "Ukończone 2015",
+    "educationDesc": "Politechnika, Polska",
+    "technicalSkills": "Umiejętności Techniczne",
+    "skillFrontend": "Frontend",
+    "skillBackend": "Backend",
+    "skillDevops": "DevOps"
+  }
+}

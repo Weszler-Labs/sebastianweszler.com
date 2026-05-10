@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "resume": "Resume",
+    "skipToMain": "Skip to main content",
+    "toggleLanguage": "Switch to Polish"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "visitProfile": "Visit my {name} profile"
+  },
+  "home": {
+    "replayAnimation": "Replay animation",
+    "title": "Sebastian Weszler",
+    "subtitle": "Software Engineer | Technology Enthusiast | Problem-Solver",
+    "description": "I'm passionate about using technology to solve problems and improve people's lives. I'm always looking for new ways to innovate and create. If you have an idea, let's talk!",
+    "moreAboutMe": "More about me..."
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Born and raised in Poland, I studied Electronic Engineering, which laid the foundation for my technical journey.",
+    "paragraph1": "After graduation, I worked as a Technician before venturing into entrepreneurship, where I founded and operated a successful online bicycle store.",
+    "paragraph2": "My passion for building and innovating eventually led me back to my technical roots. Today, I am a full-time Software Engineer, leveraging my diverse background to build robust, user-centric applications.",
+    "technicalSkills": "Technical Skills",
+    "backToHome": "Back to home"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "A selection of my open-source work and experiments. Most of my recent work is Python and JavaScript based.",
+    "experience": "Experience",
+    "experienceLeadTitle": "Lead Full-stack Software Engineer",
+    "experienceLeadPeriod": "Present",
+    "experienceLeadDesc": "Leading technical architecture and implementation for various projects, focusing on performance, scalability, and user experience.",
+    "experienceEntrepreneurTitle": "Entrepreneur & Online Store Owner",
+    "experienceEntrepreneurPeriod": "Previous",
+    "experienceEntrepreneurDesc": "Founded and operated a successful online bicycle store, managing everything from supply chain to customer experience and digital marketing.",
+    "experienceTechTitle": "Technician",
+    "experienceTechPeriod": "Early Career",
+    "experienceTechDesc": "Worked in technical roles following my Electronic Engineering studies, gaining hands-on experience with hardware and systems."
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Thoughts on software engineering, technology, and building products.",
+    "readMore": "Read more",
+    "noPosts": "No posts yet. Stay tuned!",
+    "backToBlog": "Back to blog",
+    "thanksForReading": "Thanks for reading! If you have any questions or feedback, feel free to contact me."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Have an idea or just want to chat? I'm always open to new opportunities and collaborations.",
+    "email": "Email",
+    "socials": "Socials",
+    "messageSent": "Message Sent!",
+    "messageSentDesc": "Thanks for reaching out. I'll get back to you as soon as possible.",
+    "sendAnother": "Send another message",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "message": "Message",
+    "messagePlaceholder": "How can I help you?",
+    "sendMessage": "Send Message"
+  },
+  "resume": {
+    "title": "Resume",
+    "description": "Lead Full-stack Software Engineer with a passion for building high-quality software.",
+    "downloadPdf": "Download PDF",
+    "experience": "Experience",
+    "experienceLeadTitle": "Lead Full-stack Software Engineer",
+    "experienceLeadPeriod": "2023 — Present",
+    "experienceLeadDesc": "Leading technical development and architecture for complex web applications. Mentoring junior developers and driving engineering best practices.",
+    "experienceEntrepreneurTitle": "Entrepreneur & Store Owner",
+    "experienceEntrepreneurPeriod": "2018 — 2023",
+    "experienceEntrepreneurDesc": "Successfully founded and scaled an online bicycle retail business. Developed custom tools for inventory management and customer relationship management.",
+    "experienceTechTitle": "Technician",
+    "experienceTechPeriod": "2015 — 2018",
+    "experienceTechDesc": "Maintenance and troubleshooting of electronic systems and hardware.",
+    "education": "Education",
+    "educationTitle": "Electronic Engineering",
+    "educationPeriod": "Graduated 2015",
+    "educationDesc": "Technical University, Poland",
+    "technicalSkills": "Technical Skills",
+    "skillFrontend": "Frontend",
+    "skillBackend": "Backend",
+    "skillDevops": "DevOps"
+  }
+}
