@@ -3,6 +3,20 @@ import { getT } from "@/lib/i18n-shared";
 
 const projects = [
   {
+    title: "Event-Driven Platform",
+    description:
+      "A production-grade microservices platform demonstrating distributed systems architecture, event-driven communication with Redis Streams, saga pattern for distributed transactions, circuit breaker resilience, and full observability stack.",
+    tags: ["Python", "Go", "Redis", "Docker", "PostgreSQL", "CI/CD"],
+    href: "https://github.com/Weszler-Labs/event-driven-platform",
+  },
+  {
+    title: "AI Code Reviewer",
+    description:
+      "An intelligent code review automation tool powered by AI. Analyzes pull requests for bugs, security issues, performance problems, and style violations with a modular plugin architecture.",
+    tags: ["Python", "AI/ML", "GitHub Actions", "OpenAI", "DevTools"],
+    href: "https://github.com/Weszler-Labs/ai-code-reviewer",
+  },
+  {
     title: "google-kickstart",
     description: "Solutions for Google Kickstart competitive programming rounds in Python.",
     tags: ["Python", "Algorithms", "Competitive Programming"],

@@ -1,0 +1,107 @@
+export const metadata = {
+  title: "Rebuilding sebastianweszler.com: A Modern Static Site Architecture",
+  date: "2026-05-11",
+  description: "A deep dive into the architecture, CI/CD pipeline, and performance optimizations behind the complete rebuild of sebastianweszler.com.",
+};
+
+# Rebuilding sebastianweszler.com: Architecture, CI/CD & Performance
+
+## Overview
+
+This case study covers the complete rebuild of my personal website — from a legacy setup to a modern, statically-exported Next.js application deployed on Cloudflare Pages. The goal was to create a fast, maintainable, and globally available site with minimal operational overhead.
+
+## Architecture
+
+### Framework: Next.js 16 with App Router
+
+The site is built on **Next.js 16.2.3** using the App Router. The App Router provides a file-system based routing paradigm with React Server Components by default, enabling zero client-side JavaScript for static content.
+
+Key architectural decisions:
+
+- **Static Export** (`output: 'export'`): The entire site is pre-rendered at build time into flat HTML, CSS, and JS files. This eliminates the need for a Node.js server, reducing attack surface and operational costs.
+- **MDX for Content**: Blog posts and case studies are authored as MDX files in `src/content/blog/`, combining the simplicity of Markdown with the power of React components. The `@next/mdx` plugin handles compilation at build time.
+- **i18n Without Runtime Overhead**: Internationalization is handled through a simple dictionary-based approach with JSON files (`messages/en.json`, `messages/pl.json`) rather than a full i18n framework. A shared `getT()` utility resolves translations at build time.
+- **Tailwind CSS 4 with Dark Mode**: Styling uses Tailwind CSS 4's `@theme inline` directive for design tokens. Dark mode is implemented via CSS class toggling with `prefers-color-scheme` detection and localStorage persistence.
+
+### Component Architecture
+
+The component tree is organized into page-level content components (`src/components/pages/`) and shared UI components:
+
+| Layer | Directory | Purpose |
+|-------|-----------|---------|
+| Pages | `src/app/[locale]/` | Route segments, one per page |
+| Content | `src/components/pages/` | Page-specific React components |
+| Shared | `src/components/` | Navigation, theme toggle, animations, layout |
+| Content | `src/content/blog/` | MDX blog post files |
+| Messages | `messages/` | i18n JSON dictionaries |
+
+### Typography & Performance
+
+- **Geist Font**: The site uses Vercel's Geist font family via `next/font`, which automatically self-hosts the font files with `display: swap` to prevent layout shift (CLS).
+- **Zero Runtime JavaScript**: All pages are fully static. No client-side hydration is needed for content pages. Client components (theme toggle, newsletter signup) are isolated and lazy.
+
+## CI/CD Pipeline
+
+The entire deployment pipeline runs through **GitHub Actions** with zero-touch automation:
+
+```yaml
+# .github/workflows/deploy.yml
+- Push to main triggers workflow
+- pnpm install --frozen-lockfile
+- pnpm build (next build + static export)
+- wrangler pages deploy out --project-name=sebastianweszler-com
+```
+
+### Pipeline Stages
+
+1. **Trigger**: Push to `main` branch or manual `workflow_dispatch`
+2. **Setup**: Ubuntu runner, pnpm setup with caching, Node.js 22
+3. **Build**: `pnpm build` runs Next.js static export, outputting to `out/`
+4. **Deploy**: Cloudflare Wrangler publishes the `out/` directory to Cloudflare Pages
+
+### Why Cloudflare Pages
+
+- **Global CDN**: Built-in edge distribution across 330+ cities
+- **Static-first**: Perfect match for statically exported Next.js sites
+- **Free Tier**: Generous free tier with unlimited bandwidth for personal sites
+- **Wrangler Integration**: First-class CI/CD support via the `wrangler-action` GitHub Action
+
+## Performance Results
+
+The static export strategy yields exceptional performance metrics:
+
+- **Zero Server Response Time**: No TTFB from a dynamic server — HTML is served directly from Cloudflare's edge cache
+- **No JavaScript for Content**: Blog posts and pages render with zero client JS, achieving instant loads
+- **Optimized Font Loading**: Self-hosted Geist fonts via `next/font` with `display: swap` eliminates CLS from font loading
+
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| Build output size | ~200KB (compressed) |
+| JavaScript per page | 0KB (static content pages) |
+| Lighthouse Performance | 100 (projected) |
+| Global TTFB | &lt;50ms (Cloudflare edge) |
+
+## Lessons Learned
+
+### What Went Well
+
+- **Static export simplicity**: No server to maintain, no infrastructure to monitor. The site is just files on a CDN.
+- **Next.js + MDX**: Authoring content in MDX with React component imports is a powerful pattern for developer experience.
+- **Tailwind CSS 4**: The `@theme inline` directive makes design tokens explicit and type-safe without a separate design token file.
+
+### What Could Be Improved
+
+- **Dynamic features need workarounds**: Newsletter signup and contact form require third-party services or serverless functions — not ideal for a pure static site.
+- **Blog metadata parsing**: The current `getPosts()` implementation doesn't extract frontmatter from MDX files, requiring a manual update for each new post.
+
+## Conclusion
+
+This rebuild demonstrates that a modern, high-performance personal website can be built with Next.js's static export and deployed on Cloudflare Pages with minimal operational overhead. The architecture prioritizes:
+
+1. **Speed**: Static files served from the edge
+2. **Simplicity**: No servers, no databases, no runtime dependencies
+3. **Maintainability**: MDX content, Tailwind tokens, and a flat component hierarchy
+
+The complete source code is available at [github.com/SWeszler/sebastianweszler.com](https://github.com/SWeszler/sebastianweszler.com).

@@ -66,6 +66,17 @@
     "messagePlaceholder": "Jak mogę Ci pomóc?",
     "sendMessage": "Wyślij Wiadomość"
   },
+  "newsletter": {
+    "title": "Bądź na Bieżąco",
+    "description": "Zapisz się do newslettera, aby otrzymywać najnowsze wpisy i projekty.",
+    "emailPlaceholder": "twoj.email@przyklad.com",
+    "subscribe": "Subskrybuj",
+    "subscribing": "Subskrybowanie...",
+    "success": "Jesteś zapisany! Dzięki za dołączenie.",
+    "error": "Coś poszło nie tak. Spróbuj ponownie później.",
+    "emailRequired": "Proszę podać adres email.",
+    "emailInvalid": "Proszę podać prawidłowy adres email."
+  },
   "resume": {
     "title": "CV",
     "description": "Lead Full-stack Software Engineer z pasją do budowania wysokiej jakości oprogramowania.",

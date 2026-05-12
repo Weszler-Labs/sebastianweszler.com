@@ -1,6 +1,3 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
 :root {
   --color-zinc-50: #fafafa;
   --color-zinc-100: #f4f4f5;
@@ -18,7 +15,6 @@
   --color-blue-500: #3b82f6;
   --color-blue-600: #2563eb;
 
-  --color-green-100: #dcfce7;
   --color-green-400: #4ade80;
   --color-green-600: #16a34a;
   --color-green-900-30: rgba(22, 163, 74, 0.3);
@@ -78,17 +74,6 @@
   --color-success: var(--color-green-600);
   --color-success-surface: var(--color-green-100);
   --color-error: var(--color-red-600);
-
-  --line-height-tight: 1.25;
-  --line-height-relaxed: 1.625;
-  --letter-spacing-tight: -0.025em;
-
-  --spacing-section-gap: 2rem;
-  --spacing-card-padding: 1.25rem;
-  --spacing-form-padding: 1.5rem;
-  --spacing-nav-gap: 1.5rem;
-  --spacing-footer-top: 4rem;
-  --spacing-content-max-width: 48rem;
 }
 
 .dark {
@@ -141,43 +126,4 @@
   --radius-token-lg: var(--radius-lg);
   --radius-token-xl: var(--radius-xl);
   --radius-token-2xl: var(--radius-2xl);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-*:focus-visible {
-  outline: 2px solid var(--color-focus-ring);
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
-input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--color-focus-ring);
-  outline-offset: -1px;
 }

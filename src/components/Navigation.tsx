@@ -3,48 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
-
-const localeLabels: Record<string, Record<string, string>> = {
-  en: {
-    home: "Home",
-    about: "About",
-    projects: "Projects",
-    blog: "Blog",
-    contact: "Contact",
-    resume: "Resume",
-  },
-  pl: {
-    home: "Strona Główna",
-    about: "O Mnie",
-    projects: "Projekty",
-    blog: "Blog",
-    contact: "Kontakt",
-    resume: "CV",
-  },
-};
-
-const locales = ["en", "pl"];
+import type { Dict } from "@/lib/i18n-shared";
+import { getT } from "@/lib/i18n-shared";
+import { locales, defaultLocale } from "@/lib/i18n-config";
 
 function getLocaleFromPath(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
-  if (segments.length > 0 && locales.includes(segments[0])) {
+  if (segments.length > 0 && locales.includes(segments[0] as typeof locales[number])) {
     return segments[0];
   }
-  return "en";
+  return defaultLocale;
 }
 
-export default function Navigation() {
+export default function Navigation({ dictionary }: { dictionary?: Dict }) {
   const pathname = usePathname();
   const locale = getLocaleFromPath(pathname);
-  const labels = localeLabels[locale];
+  const t = dictionary ? getT(dictionary) : (s: string) => s;
 
-  const navLinks = [
-    { key: "home", href: locale === "en" ? "/" : `/${locale}` },
-    { key: "about", href: locale === "en" ? "/about" : `/${locale}/about` },
-    { key: "projects", href: locale === "en" ? "/projects" : `/${locale}/projects` },
-    { key: "blog", href: locale === "en" ? "/blog" : `/${locale}/blog` },
-    { key: "contact", href: locale === "en" ? "/contact" : `/${locale}/contact` },
-    { key: "resume", href: locale === "en" ? "/resume" : `/${locale}/resume` },
+  const navLinks: { key: string; href: string }[] = [
+    { key: "home", href: locale === defaultLocale ? "/" : `/${locale}` },
+    { key: "about", href: locale === defaultLocale ? "/about" : `/${locale}/about` },
+    { key: "projects", href: locale === defaultLocale ? "/projects" : `/${locale}/projects` },
+    { key: "blog", href: locale === defaultLocale ? "/blog" : `/${locale}/blog` },
+    { key: "contact", href: locale === defaultLocale ? "/contact" : `/${locale}/contact` },
+    { key: "resume", href: locale === defaultLocale ? "/resume" : `/${locale}/resume` },
   ];
 
   const otherLocale = locales.find((l) => l !== locale)!;
@@ -62,13 +44,13 @@ export default function Navigation() {
             <li key={link.key}>
               <Link
                 href={link.href}
-                className={`transition-colors hover:text-zinc-900 dark:hover:text-zinc-50 ${
+                className={`transition-colors hover:text-primary ${
                   isActive
-                    ? "text-zinc-900 dark:text-zinc-50 border-b-2 border-zinc-900 dark:border-zinc-50 pb-1"
-                    : "text-zinc-500 dark:text-zinc-400"
+                    ? "text-primary border-b-2 border-primary pb-1"
+                    : "text-muted"
                 }`}
               >
-                {labels[link.key]}
+                {t(`nav.${link.key}`)}
               </Link>
             </li>
           );
@@ -77,8 +59,8 @@ export default function Navigation() {
       <div className="flex items-center gap-2">
         <Link
           href={toggleHref}
-          className="px-2 py-1 text-xs font-medium rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-          aria-label={`Switch to ${otherLocale === "pl" ? "Polish" : "English"}`}
+          className="px-2 py-1 text-xs font-medium rounded-md bg-surface text-muted hover:bg-surface-hover transition-colors"
+          aria-label={t("nav.toggleLanguage")}
         >
           {otherLocale === "pl" ? "PL" : "EN"}
         </Link>

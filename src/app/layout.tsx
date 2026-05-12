@@ -52,15 +52,15 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white dark:focus:bg-zinc-50 dark:focus:text-zinc-900 focus:rounded-lg"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-card dark:focus:bg-primary dark:focus:text-card focus:rounded-lg"
         >
           Skip to main content
         </a>
         <main id="main-content" className="flex-1 flex flex-col items-center justify-center p-8 sm:p-24">
-          <div className="w-full max-w-2xl bg-white dark:bg-zinc-900 shadow-sm border border-zinc-200 dark:border-zinc-800 rounded-2xl p-8 sm:p-12">
+          <div className="w-full max-w-2xl bg-card shadow-sm border border-border rounded-2xl p-8 sm:p-12">
             {children}
           </div>
         </main>

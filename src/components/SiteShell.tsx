@@ -1,7 +1,9 @@
 import Navigation from "./Navigation";
 import AnimatedLayout from "./AnimatedLayout";
+import NewsletterSignup from "./NewsletterSignup";
+import type { Dict } from "@/lib/i18n-shared";
 
-export default function SiteShell({ children }: { children: React.ReactNode }) {
+export default function SiteShell({ children, dictionary }: { children: React.ReactNode; dictionary?: Dict }) {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -14,11 +16,12 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Navigation />
+      <Navigation dictionary={dictionary} />
       <AnimatedLayout>
         {children}
       </AnimatedLayout>
-      <footer className="mt-16 pt-8 border-t border-zinc-100 dark:border-zinc-800 flex flex-col items-center gap-4 text-sm text-zinc-500" role="contentinfo">
+      <footer className="mt-16 pt-8 border-t border-border flex flex-col items-center gap-6 text-sm text-muted" role="contentinfo">
+        <NewsletterSignup dictionary={dictionary} />
         <div className="flex gap-6">
           {socialLinks.map((link) => (
             <a
@@ -26,7 +29,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-zinc-900 dark:hover:text-white transition-colors"
+              className="hover:text-foreground transition-colors"
               aria-label={`Visit my ${link.name} profile`}
             >
               {link.name}

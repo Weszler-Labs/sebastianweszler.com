@@ -66,6 +66,17 @@
     "messagePlaceholder": "How can I help you?",
     "sendMessage": "Send Message"
   },
+  "newsletter": {
+    "title": "Stay Updated",
+    "description": "Subscribe to my newsletter for the latest posts and projects.",
+    "emailPlaceholder": "your.email@example.com",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success": "You're subscribed! Thanks for joining.",
+    "error": "Something went wrong. Please try again later.",
+    "emailRequired": "Please enter your email address.",
+    "emailInvalid": "Please enter a valid email address."
+  },
   "resume": {
     "title": "Resume",
     "description": "Lead Full-stack Software Engineer with a passion for building high-quality software.",

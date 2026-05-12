@@ -6,7 +6,7 @@ export default async function RootHome() {
   const dict = await getDictionary("en");
 
   return (
-    <SiteShell>
+    <SiteShell dictionary={dict}>
       <HomeContent dictionary={dict} locale="en" />
     </SiteShell>
   );
