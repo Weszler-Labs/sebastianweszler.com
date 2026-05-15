@@ -32,6 +32,7 @@ export default function AnimatedLayout({ children }: { children: ReactNode }) {
       animate="animate"
       exit="exit"
       variants={pageVariants}
+      className="animate-fade-in"
     >
       {children}
     </motion.div>

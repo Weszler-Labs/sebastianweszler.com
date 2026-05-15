@@ -23,7 +23,7 @@
 
 ## Milestone 4: Advanced — IN PROGRESS
 - [ ] Analytics dashboard
-- [ ] Newsletter signup
+- [x] Newsletter signup
 - [x] i18n support (English + Polish)
 
 ## Recommended Tech Stack

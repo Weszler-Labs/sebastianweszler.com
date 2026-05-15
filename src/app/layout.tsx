@@ -48,19 +48,29 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
+<<<<<<< Updated upstream
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+=======
+      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-300">
+>>>>>>> Stashed changes
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-card dark:focus:bg-primary dark:focus:text-card focus:rounded-lg"
         >
           Skip to main content
         </a>
+<<<<<<< Updated upstream
         <main id="main-content" className="flex-1 flex flex-col items-center justify-center p-8 sm:p-24">
           <div className="w-full max-w-2xl bg-card shadow-sm border border-border rounded-2xl p-8 sm:p-12">
+=======
+        <main id="main-content" className="flex-1 flex flex-col items-center p-4 sm:p-12 md:p-24">
+          <div className="w-full max-w-4xl bg-white dark:bg-zinc-900 shadow-xl border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-10 md:p-16">
+>>>>>>> Stashed changes
             {children}
           </div>
         </main>

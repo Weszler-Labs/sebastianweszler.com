@@ -5,12 +5,14 @@ function ExperienceEntry({
   title,
   period,
   description,
+  achievementsHeading,
   achievements,
   isFirst,
 }: {
   title: string;
   period: string;
   description: string;
+  achievementsHeading?: string;
   achievements?: string[];
   isFirst?: boolean;
 }) {
@@ -21,20 +23,27 @@ function ExperienceEntry({
         <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
           {title}
         </h3>
-        <span className="text-sm font-medium text-zinc-500">{period}</span>
+        <span className="text-sm font-medium text-zinc-500 whitespace-nowrap">{period}</span>
       </div>
-      <p className="text-zinc-600 dark:text-zinc-400 mt-2">
+      <p className="text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">
         {description}
       </p>
       {achievements && achievements.length > 0 && (
-        <ul className="mt-3 space-y-1.5">
-          {achievements.map((a, i) => (
-            <li key={i} className="text-sm text-zinc-500 dark:text-zinc-400 flex items-start gap-2">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 shrink-0" />
-              {a}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-4">
+          {achievementsHeading && (
+            <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 uppercase tracking-wider mb-2">
+              {achievementsHeading}
+            </h4>
+          )}
+          <ul className="space-y-1.5">
+            {achievements.map((a, i) => (
+              <li key={i} className="text-sm text-zinc-500 dark:text-zinc-400 flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600 shrink-0" />
+                {a}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
@@ -96,6 +105,7 @@ export default function ResumeContent({ dictionary }: { dictionary?: Dict }) {
               title={t("resume.experienceLeadTitle")}
               period={t("resume.experienceLeadPeriod")}
               description={t("resume.experienceLeadDesc")}
+              achievementsHeading={t("resume.experienceLeadAchievements")}
               achievements={leadAchievements}
               isFirst
             />
@@ -104,6 +114,7 @@ export default function ResumeContent({ dictionary }: { dictionary?: Dict }) {
               title={t("resume.experienceEntrepreneurTitle")}
               period={t("resume.experienceEntrepreneurPeriod")}
               description={t("resume.experienceEntrepreneurDesc")}
+              achievementsHeading={t("resume.experienceEntrepreneurAchievements")}
               achievements={entrepreneurAchievements}
             />
 

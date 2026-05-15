@@ -109,3 +109,9 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy out --project-name=sebastianweszler-com
+
+      - run: npx playwright install --with-deps chromium
+      - name: E2E Tests
+        run: node tests/e2e.mjs
+        env:
+          BASE_URL: https://sebastianweszler-com.pages.dev/

@@ -33,7 +33,9 @@ export default function Navigation({ dictionary }: { dictionary?: Dict }) {
 
   const toggleHref = pathname === "/"
     ? `/${otherLocale}`
-    : pathname.replace(`/${locale}`, `/${otherLocale}`).replace(/\/$/, "") || "/";
+    : locale === "en" && !pathname.startsWith("/en")
+      ? `/${otherLocale}${pathname}`
+      : pathname.replace(`/${locale}`, `/${otherLocale}`).replace(/\/$/, "") || "/";
 
   return (
     <nav className="mb-12 flex items-center justify-between">
