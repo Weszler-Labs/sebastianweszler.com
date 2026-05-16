@@ -16,7 +16,7 @@ export default function ContactContent({ dictionary }: { dictionary?: Dict }) {
   return (
     <div className="flex flex-col gap-8 animate-fade-in">
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 font-serif">
           {t("contact.title")}
         </h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">

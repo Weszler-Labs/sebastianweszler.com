@@ -42,10 +42,10 @@ async function run() {
     assert(h1 === "Sebastian Weszler", `H1: "${h1}"`);
 
     const subtitle = await page.textContent("p.text-xl");
-    assert(subtitle.includes("Software Engineer"), `Subtitle: "${subtitle}"`);
+    assert(subtitle.includes("Engineering Leader"), `Subtitle: "${subtitle}"`);
 
     const desc = await page.textContent("p.max-w-md");
-    assert(desc.includes("passionate about using technology"), `Description first 50 chars check`);
+    assert(desc.includes("Technical leader"), `Description check: "${desc.substring(0, 50)}"`);
 
     const moreLink = page.locator("a").filter({ hasText: "More about me" });
     assert(await moreLink.count() > 0, "More about me link missing");
@@ -70,10 +70,10 @@ async function run() {
     assert(resp.status() === 200, `Status ${resp.status()}`);
 
     const subtitle = await page.textContent("p.text-xl");
-    assert(subtitle.includes("In\u017Cynier Oprogramowania"), `PL subtitle: "${subtitle}"`);
+    assert(subtitle.includes("Lider In\u017Cynierii"), `PL subtitle: "${subtitle}"`);
 
     const desc = await page.textContent("p.max-w-md");
-    assert(desc.includes("Pasjonuj\u0119"), `PL description`);
+    assert(desc.includes("Lider techniczny"), `PL description: "${desc.substring(0, 50)}"`);
 
     await page.close();
   });
@@ -123,7 +123,7 @@ async function run() {
     assert(await projectLinks.count() >= 4, `External links: ${await projectLinks.count()}`);
 
     const body = await page.textContent("main");
-    assert(body.includes("Experience"), "Experience section missing");
+    assert(body.includes("Open-source work"), "Project description section missing");
 
     await page.close();
   });

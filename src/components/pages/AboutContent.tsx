@@ -22,7 +22,7 @@ export default function AboutContent({ dictionary, locale }: { dictionary?: Dict
         </div>
 
         <div className="flex flex-col gap-4 text-center sm:text-left">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 font-serif">
             {t("about.title")}
           </h1>
           <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -41,7 +41,7 @@ export default function AboutContent({ dictionary, locale }: { dictionary?: Dict
       </div>
 
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 text-center sm:text-left">
+        <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 text-center sm:text-left font-serif">
           {t("about.technicalSkills")}
         </h2>
         <SkillsetVisualization />

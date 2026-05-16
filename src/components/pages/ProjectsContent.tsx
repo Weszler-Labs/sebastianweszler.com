@@ -48,7 +48,7 @@ export default function ProjectsContent({ dictionary }: { dictionary?: Dict }) {
   return (
     <div className="flex flex-col gap-8 animate-fade-in">
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 font-serif">
           {t("projects.title")}
         </h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
@@ -106,7 +106,7 @@ export default function ProjectsContent({ dictionary }: { dictionary?: Dict }) {
       </div>
 
       <div className="mt-8 pt-8 border-t border-zinc-100 dark:border-zinc-800">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-4">
+        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-4 font-serif">
           {t("projects.experience")}
         </h2>
         <div className="space-y-6">
