@@ -21,9 +21,9 @@
 - [x] Performance optimization (image optimization, LCP improvements)
 - [x] Accessibility audit (WCAG 2.1 AA)
 
-## Milestone 4: Advanced — IN PROGRESS
-- [ ] Analytics dashboard
-- [x] Newsletter signup
+## Milestone 4: Advanced — COMPLETED
+- [x] Analytics dashboard (Plausible integrated)
+- [x] Newsletter signup (Form implemented)
 - [x] i18n support (English + Polish)
 
 ## Recommended Tech Stack
