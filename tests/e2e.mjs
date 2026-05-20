@@ -1,6 +1,7 @@
 import { chromium } from "@playwright/test";
 
-const BASE = process.env.BASE_URL || "https://sebastianweszler-com.pages.dev";
+const BASE_URL = process.env.BASE_URL || "https://sebastianweszler-com.pages.dev";
+const BASE = BASE_URL.endsWith("/") ? BASE_URL.slice(0, -1) : BASE_URL;
 
 let passed = 0;
 let failed = 0;
