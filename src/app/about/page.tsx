@@ -1,12 +1,12 @@
 import SiteShell from "@/components/SiteShell";
-import BlogPage from '../[locale]/blog/page';
+import AboutPage from '../[locale]/about/page';
 import { getDictionary } from "@/lib/i18n";
 
-export default async function BlogPageWrapper() {
+export default async function AboutPageWrapper() {
   const dict = await getDictionary("en");
   return (
     <SiteShell dictionary={dict}>
-      <BlogPage params={Promise.resolve({ locale: 'en' })} />
+      <AboutPage params={Promise.resolve({ locale: 'en' })} />
     </SiteShell>
   );
 }
