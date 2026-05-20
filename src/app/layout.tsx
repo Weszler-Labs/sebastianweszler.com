@@ -52,6 +52,11 @@ export default function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          defer
+          data-domain="sebastianweszler.com"
+          src="https://plausible.io/js/script.js"
+        ></script>
       </head>
       <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-300">
         <a
