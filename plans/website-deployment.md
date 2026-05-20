@@ -6,33 +6,38 @@ This document outlines the strategy for deploying and managing the sebastianwesz
 
 *   **Primary Deployment:** The website is deployed to Cloudflare Pages automatically on pushes to the `main` branch via the `.github/workflows/deploy.yml` GitHub Actions workflow.
 *   **Manual Trigger:** A manual deployment can be triggered using `workflow_dispatch` in the `deploy.yml` workflow.
-*   **Environment:** Currently, all deployments are directed to the production environment on Cloudflare Pages, associated with the project `sebastianweszler-com`.
+*   **Environment:** Currently, all deployments are directed to the production environment on Cloudflare Pages, associated with the project `sebastianweszler-com`. The job is configured to use the `production` GitHub Environment for secrets management.
 
 ## 2. Build Process
 
 *   **Package Manager:** `pnpm` is used for dependency management and building.
-*   **Build Command:** `pnpm build` is executed within the GitHub Actions workflow. This command is expected to generate the static site output in the `out/` directory, which is then deployed.
-*   **Caching:** The `actions/setup-node@v4` action is configured to cache `pnpm` dependencies, which speeds up the installation step in subsequent runs.
+*   **Build Command:** `pnpm build` is executed within the GitHub Actions workflow. This command generates the static site output in the `out/` directory.
+*   **Caching:** The `actions/setup-node@v4` action is configured to cache `pnpm` dependencies.
 
 ## 3. Secrets Management
 
-*   **Cloudflare Credentials:** Deployment relies on two secrets stored in GitHub repository settings:
-    *   `CLOUDFLARE_API_TOKEN`: For authenticating with Cloudflare.
+*   **Cloudflare Credentials:** Deployment relies on two secrets stored in the **GitHub "production" Environment**:
+    *   `CLOUDFLARE_API_TOKEN`: Required for authentication. Must have `Cloudflare Pages:Edit` and `Zone:Edit` permissions.
     *   `CLOUDFLARE_ACCOUNT_ID`: The Cloudflare account identifier.
-*   **Security:** These secrets are securely accessed by the GitHub Actions workflow using the `secrets` context and are not exposed in the codebase or logs.
+*   **Current Status:** Secrets are confirmed present in the `production` environment. However, auth errors suggest either incorrect token permissions or mismatch in environment name mapping.
 
-## 4. Testing and Verification
+## 4. Automation & Robustness Fixes
 
-*   **Pre-deployment:** The `pnpm build` command includes any necessary build-time checks or linting. (This section can be expanded as more robust pre-deployment testing is implemented.)
-*   **Post-deployment:**
-    *   **Automated:** The `cloudflare/wrangler-action@v3` command `pages deploy out --project-name=sebastianweszler-com` will return a status indicating success or failure.
-    *   **QA Verification:** The QA Engineer executes Puppeteer-based E2E tests against the deployment URL (e.g., `sebastianweszler-com.pages.dev`) to verify core functionality and i18n.
-    *   **Manual:** Upon successful automated and QA verification, the website should be accessible at `sebastianweszler.com`. A manual check should be performed to ensure the site loads correctly and key content is displayed.
+To resolve the persistent deployment blockers, the following improvements are being implemented:
+1.  **Resilient DNS Management:** The DNS update steps in the workflow will be made non-fatal. If the API token lacks Zone-level permissions, the deployment will still proceed to the `.pages.dev` subdomain.
+2.  **Environment Sync:** Verify that the `production` environment in GitHub exactly matches the `environment: production` key in the workflow.
+3.  **QA Integration:** As per `plans/qa-plan.md`, the E2E test suite (`node tests/e2e.mjs`) will be integrated into the deployment workflow to verify the live site post-deployment.
 
-## 5. Future Considerations and Improvements
+## 5. Rollout Checklist
 
-*   **Staging Environment:** Implement a dedicated staging environment on Cloudflare Pages. This will involve creating a new Pages project (e.g., `sebastianweszler-com-staging`) and modifying the GitHub Actions workflow (`.github/workflows/deploy.yml`) to deploy to this staging environment on pull requests targeting `main` or on pushes to a `staging` branch. Use environment variables or separate workflow configurations to manage deployment targets (staging vs. production) and associated secrets.
-*   **Rollback Strategy:** Define a clear rollback strategy in case of deployment failures or issues discovered post-deployment. Cloudflare Pages offers version history, which can be leveraged for rollbacks.
-*   **Automated E2E Testing:** Fully integrate the Puppeteer/Playwright test suite into the CI/CD pipeline. Add a new job to the `.github/workflows/deploy.yml` workflow that executes these tests against the staging/preview environment before any production rollout.
-*   **Monitoring:** Set up monitoring for the live website to detect any performance issues or downtime.
-*   **GitHub PAT Integration:** If future development requires CI/CD actions that modify the repository (e.g., version bumping, commit generation), integrate the securely provisioned GitHub PAT into the workflows. (Refer to `plans/github-pat-provisioning.md` for PAT guidelines).
+1.  [ ] Verify `CLOUDFLARE_API_TOKEN` permissions in Cloudflare dashboard.
+2.  [ ] Refactor `deploy.yml` for robustness.
+3.  [ ] Successfully trigger `workflow_dispatch` on `main`.
+4.  [ ] Verify live site at `sebastianweszler.com`.
+5.  [ ] Ensure Plausible analytics and Resend email integration are active.
+
+## 6. Future Considerations and Improvements
+
+*   **Staging Environment:** Implement a dedicated staging environment on Cloudflare Pages for Pull Requests.
+*   **Rollback Strategy:** Use Cloudflare Pages version history for quick rollbacks.
+*   **Monitoring:** Set up uptime monitoring and performance alerts.
