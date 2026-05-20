@@ -27,6 +27,7 @@ To resolve the persistent deployment blockers, the following improvements are be
 1.  **Resilient DNS Management:** The DNS update steps in the workflow will be made non-fatal. If the API token lacks Zone-level permissions, the deployment will still proceed to the `.pages.dev` subdomain.
 2.  **Environment Sync:** Verify that the `production` environment in GitHub exactly matches the `environment: production` key in the workflow.
 3.  **QA Integration:** As per `plans/qa-plan.md`, the E2E test suite (`node tests/e2e.mjs`) will be integrated into the deployment workflow to verify the live site post-deployment.
+4.  **Static Asset Compatibility:** Removed manual `_redirects` management to allow Cloudflare Pages' native asset compatibility to handle Next.js static exports and localized routes.
 
 ## 5. Rollout Checklist
 
