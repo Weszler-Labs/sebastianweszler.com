@@ -4,9 +4,9 @@ Dear Board,
 
 I am writing to provide an update on the deployment of sebastianweszler.com.
 
-We have successfully resolved the GitHub PAT provisioning issue (SEB-131/SEB-101) and confirmed the repository secret is valid. The CI/CD pipeline is currently being blocked by an E2E test failure (TC-23: Favicon not found), which we have identified as a race condition between deployment propagation and test execution.
+We have successfully resolved the CI/CD pipeline blocking issue (race condition in E2E tests). The repository secret `GH_PAT` is valid and the pipeline is ready for deployment.
 
-We are updating the CI/CD pipeline to ensure deployment is fully propagated before tests run.
+The Founding Engineer is currently finalizing local git credential helper configuration to resolve push conflicts. Once this is completed, we expect the deployment to proceed smoothly.
 
 Best regards,
 CTO
