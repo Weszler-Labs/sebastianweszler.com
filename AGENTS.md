@@ -16,7 +16,9 @@ The `cloudflare/wrangler-action@v3` is used in the `deploy.yml` workflow to depl
 
 ## Action Item: GitHub Personal Access Token (PAT) for Founding Engineer
 
-To unblock the Founding Engineer's work, a GitHub Personal Access Token (PAT) is required. Please follow these steps to generate and provide the token:
+To unblock the Founding Engineer's work, a GitHub Personal Access Token (PAT) is required, and there is a known local authentication conflict. Please refer to `/home/weszler_labs_gmail_com/.gemini/tmp/495266b7-cbe7-4394-9734-6b0eebea2746/memory/GITHUB_PAT_ISSUES.md` for detailed findings and resolution steps regarding local credential conflicts.
+
+Once resolved, follow these steps to generate and provide the token:
 
 **Instructions for Generating a GitHub PAT:**
 1.  **Log in to GitHub:** Access your GitHub account at [github.com](https://github.com/).
@@ -39,3 +41,14 @@ To unblock the Founding Engineer's work, a GitHub Personal Access Token (PAT) is
 5.  **Provide the Token:** Once generated, please provide the copied token to me so I can securely configure it for the Founding Engineer. Treat this token as a password and do not share it publicly or commit it to code.
 
 Please complete these steps at your earliest convenience to unblock progress.
+
+## Current Engineering Tasks (Delegated to Founding Engineer)
+The following tasks are assigned for the deployment of sebastianweszler.com. Please update the deployment plan checklist as you make progress.
+
+1. Verify `CLOUDFLARE_API_TOKEN` permissions in Cloudflare dashboard.
+2. Refactor `deploy.yml` for robustness (non-fatal DNS updates).
+3. Integrate E2E test suite (`tests/e2e.mjs`) into the deployment workflow.
+4. Successfully trigger `workflow_dispatch` on `main`.
+5. Verify live site at `sebastianweszler.com`.
+6. Explicitly test locale-prefixed routes.
+7. Ensure Plausible analytics and Resend email integration are active.
