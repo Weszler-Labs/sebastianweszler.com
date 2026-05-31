@@ -23,7 +23,6 @@
 
 ## Milestone 4: Advanced — COMPLETED
 - [x] Analytics dashboard (Plausible integrated)
-- [x] Newsletter signup (Form implemented)
 - [x] i18n support (English + Polish)
 
 ## Recommended Tech Stack

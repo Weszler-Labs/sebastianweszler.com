@@ -1,6 +1,5 @@
 import Navigation from "./Navigation";
 import AnimatedLayout from "./AnimatedLayout";
-import NewsletterSignup from "./NewsletterSignup";
 import type { Dict } from "@/lib/i18n-shared";
 
 export default function SiteShell({ children, dictionary }: { children: React.ReactNode; dictionary?: Dict }) {
@@ -21,7 +20,6 @@ export default function SiteShell({ children, dictionary }: { children: React.Re
         {children}
       </AnimatedLayout>
       <footer className="mt-16 pt-8 border-t border-border flex flex-col items-center gap-6 text-sm text-muted" role="contentinfo">
-        <NewsletterSignup dictionary={dictionary} />
         <div className="flex gap-6">
           {socialLinks.map((link) => (
             <a

@@ -6,15 +6,13 @@
     "blog": "Blog",
     "contact": "Kontakt",
     "resume": "CV",
-    "skipToMain": "Przejdź do treści",
-    "toggleLanguage": "Przełącz na Angielski"
+    "skipToMain": "Przejdź do treści"
   },
   "footer": {
     "rights": "Wszelkie prawa zastrzeżone.",
     "visitProfile": "Odwiedź mój profil {name}"
   },
   "home": {
-    "replayAnimation": "Odtwórz animację",
     "title": "Sebastian Weszler",
     "subtitle": "Lider Inżynierii | CTO | Technical Co-Founder",
     "description": "Lider techniczny, który buduje produkty, zespoły i biznesy. Łączę głęboką wiedzę inżynieryjną z doświadczeniem przedsiębiorcy, by napędzać innowacje i osiągać wyniki.",
@@ -65,17 +63,6 @@
     "message": "Wiadomość",
     "messagePlaceholder": "Jak mogę Ci pomóc?",
     "sendMessage": "Wyślij Wiadomość"
-  },
-  "newsletter": {
-    "title": "Bądź na Bieżąco",
-    "description": "Zapisz się do newslettera, aby otrzymywać najnowsze wpisy i projekty.",
-    "emailPlaceholder": "twoj.email@przyklad.com",
-    "subscribe": "Subskrybuj",
-    "subscribing": "Subskrybowanie...",
-    "success": "Jesteś zapisany! Dzięki za dołączenie.",
-    "error": "Coś poszło nie tak. Spróbuj ponownie później.",
-    "emailRequired": "Proszę podać adres email.",
-    "emailInvalid": "Proszę podać prawidłowy adres email."
   },
   "resume": {
     "title": "CV",

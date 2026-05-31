@@ -6,15 +6,13 @@
     "blog": "Blog",
     "contact": "Contact",
     "resume": "Resume",
-    "skipToMain": "Skip to main content",
-    "toggleLanguage": "Switch to Polish"
+    "skipToMain": "Skip to main content"
   },
   "footer": {
     "rights": "All rights reserved.",
     "visitProfile": "Visit my {name} profile"
   },
   "home": {
-    "replayAnimation": "Replay animation",
     "title": "Sebastian Weszler",
     "subtitle": "Engineering Leader | CTO | Technical Co-Founder",
     "description": "Technical leader who builds products, teams, and businesses. I combine deep engineering expertise with entrepreneurial experience to drive innovation and deliver results.",
@@ -65,17 +63,6 @@
     "message": "Message",
     "messagePlaceholder": "How can I help you?",
     "sendMessage": "Send Message"
-  },
-  "newsletter": {
-    "title": "Stay Updated",
-    "description": "Subscribe to my newsletter for the latest posts and projects.",
-    "emailPlaceholder": "your.email@example.com",
-    "subscribe": "Subscribe",
-    "subscribing": "Subscribing...",
-    "success": "You're subscribed! Thanks for joining.",
-    "error": "Something went wrong. Please try again later.",
-    "emailRequired": "Please enter your email address.",
-    "emailInvalid": "Please enter a valid email address."
   },
   "resume": {
     "title": "Resume",

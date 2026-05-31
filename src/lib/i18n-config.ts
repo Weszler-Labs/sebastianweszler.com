@@ -8,6 +8,6 @@ export const localeLabels: Record<Locale, string> = {
 };
 
 export const localePaths: Record<Locale, string> = {
-  en: "",
+  en: "en",
   pl: "pl",
 };
