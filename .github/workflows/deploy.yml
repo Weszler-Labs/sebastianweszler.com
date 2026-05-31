@@ -46,7 +46,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - name: Get Cloudflare zone and upsert DNS
+      - name: Get Cloudflare zone and cleanup/upsert DNS
         continue-on-error: true
         run: |
           ZONE_ID=$(curl -s "https://api.cloudflare.com/client/v4/zones?name=sebastianweszler.com" \
@@ -60,8 +60,8 @@ jobs:
 
           echo "Zone ID: $ZONE_ID"
 
-          # Delete existing A/AAAA records at apex
-          for rtype in A AAAA; do
+          # Delete ALL existing apex DNS records (A, AAAA, CNAME) that conflict with Pages custom domain
+          for rtype in A AAAA CNAME; do
             for rid in $(curl -s "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?type=$rtype&name=sebastianweszler.com" \
               -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" | jq -r '.result[].id'); do
               curl -s -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$rid" \
@@ -69,20 +69,19 @@ jobs:
             done
           done
 
-          # Upsert CNAME
-          RECORD_ID=$(curl -s "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?type=CNAME&name=sebastianweszler.com" \
+          # Add www subdomain CNAME
+          WWW_ID=$(curl -s "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?type=CNAME&name=www.sebastianweszler.com" \
             -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" | jq -r '.result[0].id // empty')
-
-          if [ -n "$RECORD_ID" ]; then
-            curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$RECORD_ID" \
+          if [ -n "$WWW_ID" ]; then
+            curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$WWW_ID" \
               -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
               -H "Content-Type: application/json" \
-              -d '{"type":"CNAME","name":"sebastianweszler.com","content":"sebastianweszler-com.pages.dev","proxied":true}' | jq '.'
+              -d '{"type":"CNAME","name":"www.sebastianweszler.com","content":"sebastianweszler-com.pages.dev","proxied":true}' | jq '.success'
           else
             curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records" \
               -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
               -H "Content-Type: application/json" \
-              -d '{"type":"CNAME","name":"sebastianweszler.com","content":"sebastianweszler-com.pages.dev","proxied":true}' | jq '.'
+              -d '{"type":"CNAME","name":"www.sebastianweszler.com","content":"sebastianweszler-com.pages.dev","proxied":true}' | jq '.success'
           fi
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

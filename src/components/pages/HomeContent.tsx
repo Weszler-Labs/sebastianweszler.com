@@ -6,25 +6,10 @@ import { getT } from "@/lib/i18n-shared";
 
 export default function HomeContent({ dictionary, locale }: { dictionary?: Dict; locale?: string }) {
   const t = dictionary ? getT(dictionary) : (s: string) => s;
-  const prefix = locale && locale !== "en" ? `/${locale}` : "";
+  const prefix = locale ? `/${locale}` : "";
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full flex justify-start mb-8">
-        <button
-          className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
-          aria-label={t("home.replayAnimation")}
-        >
-          <Image
-            src="/replay.svg"
-            alt=""
-            width={20}
-            height={20}
-            className="dark:invert"
-          />
-        </button>
-      </div>
-
       <div className="flex flex-col items-center gap-6 text-center">
         <div className="mb-4">
           <Image

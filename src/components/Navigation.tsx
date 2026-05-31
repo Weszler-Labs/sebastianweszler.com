@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeToggle from "./ThemeToggle";
 import type { Dict } from "@/lib/i18n-shared";
 import { getT } from "@/lib/i18n-shared";
 import { locales, defaultLocale } from "@/lib/i18n-config";
@@ -21,21 +20,13 @@ export default function Navigation({ dictionary }: { dictionary?: Dict }) {
   const t = dictionary ? getT(dictionary) : (s: string) => s;
 
   const navLinks: { key: string; href: string }[] = [
-    { key: "home", href: locale === defaultLocale ? "/" : `/${locale}` },
-    { key: "about", href: locale === defaultLocale ? "/about" : `/${locale}/about` },
-    { key: "projects", href: locale === defaultLocale ? "/projects" : `/${locale}/projects` },
-    { key: "blog", href: locale === defaultLocale ? "/blog" : `/${locale}/blog` },
-    { key: "contact", href: locale === defaultLocale ? "/contact" : `/${locale}/contact` },
-    { key: "resume", href: locale === defaultLocale ? "/resume" : `/${locale}/resume` },
+    { key: "home", href: `/${locale}` },
+    { key: "about", href: `/${locale}/about` },
+    { key: "projects", href: `/${locale}/projects` },
+    { key: "blog", href: `/${locale}/blog` },
+    { key: "contact", href: `/${locale}/contact` },
+    { key: "resume", href: `/${locale}/resume` },
   ];
-
-  const otherLocale = locales.find((l) => l !== locale)!;
-
-  const toggleHref = pathname === "/"
-    ? `/${otherLocale}`
-    : locale === "en" && !pathname.startsWith("/en")
-      ? `/${otherLocale}${pathname}`
-      : pathname.replace(`/${locale}`, `/${otherLocale}`).replace(/\/$/, "") || "/";
 
   return (
     <nav className="mb-12 flex items-center justify-between">
@@ -58,16 +49,6 @@ export default function Navigation({ dictionary }: { dictionary?: Dict }) {
           );
         })}
       </ul>
-      <div className="flex items-center gap-2">
-        <Link
-          href={toggleHref}
-          className="px-2 py-1 text-xs font-medium rounded-md bg-surface text-muted hover:bg-surface-hover transition-colors"
-          aria-label={t("nav.toggleLanguage")}
-        >
-          {otherLocale === "pl" ? "PL" : "EN"}
-        </Link>
-        <ThemeToggle />
-      </div>
     </nav>
   );
 }

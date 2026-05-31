@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next'
+import { getPosts } from '@/lib/blog'
 
 export const dynamic = 'force-static'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://sebastianweszler.com'
   const lastModified = new Date()
 
@@ -16,18 +17,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const locales = ['en', 'pl']
+  const posts = await getPosts()
 
   const entries: MetadataRoute.Sitemap = []
 
   for (const locale of locales) {
     for (const route of routes) {
       entries.push({
-        url: locale === 'en'
-          ? `${baseUrl}${route.path}`
-          : `${baseUrl}/${locale}${route.path}`,
+        url: `${baseUrl}/${locale}${route.path}`,
         lastModified,
         changeFrequency: 'monthly',
         priority: route.priority,
+      })
+    }
+    for (const post of posts) {
+      entries.push({
+        url: `${baseUrl}/${locale}/blog/${post.slug}`,
+        lastModified: new Date(post.date),
+        changeFrequency: 'monthly',
+        priority: 0.6,
       })
     }
   }

@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://sebastianweszler.com"),
   title: "Sebastian Weszler | Software Engineer",
   description: "Software Engineer | Technology Enthusiast | Problem-Solver. Passionate about using technology to solve problems and improve people's lives.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     title: "Sebastian Weszler | Software Engineer",
     description: "Software Engineer | Technology Enthusiast | Problem-Solver",
