@@ -1,0 +1,56 @@
+export const metadata = {
+  title: "Designing an AI-Powered Code Review System: Architecture, Plugins, and Lessons Learned",
+  date: "2026-05-29",
+  description: "A deep dive into building an AI-powered code review automation tool with a modular plugin architecture, LLM integration, and cross-validation against deterministic checks.",
+};
+
+Code review is one of the highest-leverage activities in software engineering — and one of the most inconsistently applied. Senior engineers spend 20-30% of their time on reviews. Different reviewers catch different issues. Architectural and security problems surface after merging, not before. And the constant context switching erodes deep work.
+
+I set out to build a system that augments human reviewers — not replaces them — by automating the detection of common issues before a human ever sees the code. The result is an AI-powered code review tool that combines LLM-based analysis with deterministic static analysis, integrated directly into GitHub PR workflows.
+
+## System Architecture
+
+The system is a **modular plugin-based platform** with three layers:
+
+1. **Analysis Layer** — individual plugins for different categories of checks
+2. **Orchestration Layer** — manages plugin execution, deduplication, and result aggregation
+3. **Integration Layer** — GitHub App webhook handling and PR comment posting
+
+## Plugin Architecture
+
+The plugin system was designed for extensibility from day one. Each plugin implements a standard interface:
+
+```
+Plugin {
+  name: string
+  version: string
+  analyze(changes: FileDiff[], context: RepoContext): Finding[]
+}
+```
+
+Built-in plugins cover bug detection (null pointer dereferences, resource leaks, race conditions), security scanning (OWASP Top 10, hardcoded secrets, SQL injection), performance analysis (N+1 queries, memory leaks), style consistency, and documentation checks.
+
+## AI Integration: The Cross-Validation Strategy
+
+The LLM-powered analysis plugin sends relevant code context to the model with a structured prompt including the diff, language-specific best practices, and project conventions. The critical design decision was **cross-validation**: AI results are checked against deterministic plugins to reduce false positives. Any finding flagged by AI alone is demoted to "suggestion" rather than "warning."
+
+This matters because LLMs are excellent at pattern recognition but prone to hallucination. By layering deterministic checks over AI output, the system gets the best of both approaches — nuanced, context-aware analysis with reliable signal quality.
+
+## CI/CD Integration
+
+The system runs as a **GitHub App** that triggers on `pull_request.opened` and `pull_request.synchronize` events, runs analysis asynchronously with status updates, posts inline comments on the PR diff, and supports configuration via `.github/ai-reviewer.yml` so teams control their own quality bar.
+
+## Key Results
+
+- Automated detection of common bug patterns, security vulnerabilities, and performance issues
+- Plugin architecture enables teams to write custom checks specific to their stack
+- AI-driven analysis catches nuanced issues that static analysis alone would miss
+- False positive filtering through cross-validation with deterministic plugins
+
+## Engineering Leadership Takeaways
+
+The most important design decision in this project wasn't technical — it was philosophical. The system is designed to *augment* human reviewers, not gatekeep. Every finding is a suggestion, not a blocker. Teams configure their own severity thresholds. The AI output is explicitly labeled as assisted analysis.
+
+This approach recognizes that code review is fundamentally a human activity about knowledge sharing, team standards, and collective ownership. Automation should handle the rote work so humans can focus on the parts that matter: architecture, design, and mentoring.
+
+The full project is available at [github.com/Weszler-Labs/ai-code-reviewer](https://github.com/Weszler-Labs/ai-code-reviewer).

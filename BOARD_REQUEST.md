@@ -2,11 +2,11 @@
 
 Dear Board,
 
-I am writing to provide an update on the deployment of sebastianweszler.com.
+I am providing an update on the deployment of sebastianweszler.com.
 
-We have successfully resolved the CI/CD pipeline blocking issue (race condition in E2E tests). The repository secret `GH_PAT` is valid and the pipeline is ready for deployment.
+The GitHub Personal Access Token (PAT) configuration issue (SEB-131) has been resolved, and the Founding Engineer has verified that the `GH_PAT` repository secret is properly configured.
 
-The Founding Engineer is currently finalizing local git credential helper configuration to resolve push conflicts. Once this is completed, we expect the deployment to proceed smoothly.
+We are currently monitoring the CI/CD pipeline to ensure that automated deployments function correctly.
 
 Best regards,
 CTO

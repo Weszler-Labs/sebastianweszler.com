@@ -98,4 +98,4 @@ jobs:
       - name: Run E2E Tests
         run: node tests/e2e.mjs
         env:
-          BASE_URL: https://sebastianweszler-com.pages.dev/
+          BASE_URL: https://sebastianweszler.com/

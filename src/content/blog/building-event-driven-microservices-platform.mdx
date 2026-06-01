@@ -1,0 +1,65 @@
+export const metadata = {
+  title: "Building a Production-Grade Event-Driven Microservices Platform",
+  date: "2026-05-29",
+  description: "How I architected a 6+ service event-driven platform with Redis Streams, the saga pattern, circuit breakers, and full observability — and the trade-offs that mattered.",
+};
+
+There is a gap between understanding distributed systems in theory and making them work reliably in practice. When I set out to build a production-grade event-driven microservices platform, the goal was not just to connect services — it was to design a system that could survive real-world failure modes while remaining operable by a small team.
+
+## The Architecture Decision
+
+I chose **event-driven architecture with Redis Streams** as the backbone. This decision came down to three factors: Redis Streams provide exactly-once delivery semantics out of the box, consumer groups enable horizontal scaling of workers, and the operational simplicity of Redis avoids the overhead of managing a full Kafka cluster at this scale.
+
+The trade-off is commitment. Kafka would scale further, but Redis Streams meant I could operate the platform without dedicated infrastructure support. For an engineering leader evaluating architecture, this is the kind of decision that matters: choose the simplest tool that meets your constraints, not the most powerful one you might need someday.
+
+### Service Boundaries
+
+The platform is organized into six domain-bounded services:
+
+- **API Gateway** — entry point with rate limiting and auth
+- **Order Service** — manages order lifecycle, emits domain events
+- **Inventory Service** — maintains stock levels, consumes inventory events
+- **Payment Service** — processes payments, implements compensating transactions
+- **Notification Service** — fan-out to email, webhook, and push channels
+- **Analytics Service** — ingests event streams for metrics and reporting
+
+## Key Technical Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Redis Streams over Kafka | Lower operational complexity, sufficient throughput |
+| Saga pattern with choreography | No central orchestrator — each service owns its compensating action |
+| Circuit breaker per service client | Prevents cascading failures when downstream degrades |
+| Docker Compose for local dev | Reproducible environments without Kubernetes overhead |
+| GitHub Actions for CI/CD | Automated pipeline from commit to deployment |
+
+## Implementation Highlights
+
+### Saga Pattern
+
+Each transaction spanning multiple services publishes a domain event. If a service fails, it emits a compensating event. For example, if payment fails after inventory has been reserved, the inventory service listens for the `payment_failed` event and releases the reservation. This choreographed approach avoids a single point of failure while maintaining data consistency.
+
+### Observability Stack
+
+I integrated **OpenTelemetry** for distributed tracing across all services, **Prometheus** for metric collection and alerting, **Grafana** dashboards for real-time visualization, and structured logging with correlation IDs across service boundaries.
+
+### Resilience Patterns
+
+Every inter-service call was wrapped with circuit breaker (fail fast), retry with exponential backoff, timeout configuration per service, and bulkhead isolation with resource pools per downstream service.
+
+## Results
+
+- Successfully demonstrated 6+ microservice coordination with event-driven architecture
+- Saga pattern guaranteed data consistency without distributed transactions
+- Circuit breakers prevented cascading failures in fault injection tests
+- Full observability with distributed tracing across all service boundaries
+- Automated CI/CD pipeline from commit to deployment
+- Complete documentation including architecture decisions, API specs, and runbooks
+
+## What This Taught Me About Engineering Leadership
+
+Building distributed systems is as much about operational maturity as it is about architecture. The patterns that matter most are not the ones that handle success — they are the ones that handle failure gracefully.
+
+For a CTO, this translates directly: the systems you design will fail. The question is whether your team knows how to detect it, diagnose it, and recover from it before your users notice. Observability, runbooks, and controlled failure testing are not luxuries — they are operational necessities that scale with your team's velocity.
+
+The full project is available at [github.com/Weszler-Labs/event-driven-platform](https://github.com/Weszler-Labs/event-driven-platform).

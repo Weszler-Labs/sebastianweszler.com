@@ -1,0 +1,60 @@
+export const metadata = {
+  title: "From Zero to Revenue: Building the Technical Foundation of an E-Commerce Business",
+  date: "2026-05-29",
+  description: "How I built a custom inventory management, dynamic pricing, and CRM system that replaced 5+ off-the-shelf tools — and scaled a business from zero to revenue without external funding.",
+};
+
+I did not start my career building microservices. I started it building spreadsheets that had to become software.
+
+Between 2018 and 2023, I founded and scaled an online bicycle retail business. The conventional approach would have been to stitch together Shopify, a CRM tool, a pricing app, and a dozen other SaaS products. Instead, I built custom software for every core operation: inventory management, dynamic pricing, CRM, and supply chain visibility.
+
+This is the story of why that mattered, what I built, and what it taught me about engineering leadership.
+
+## The Problem: Off-the-Shelf Doesn't Fit
+
+A niche e-commerce business faces challenges that general-purpose platforms cannot address well:
+
+- **Inventory complexity** — thousands of SKUs with variants, seasonal demand patterns, and supplier lead times
+- **Dynamic pricing** — margins fluctuate based on supplier costs, competitor moves, and inventory levels
+- **CRM fragmentation** — customer data spread across email, phone, and social channels with no unified view
+- **Supply chain visibility** — no real-time view of order status, shipping tracking, or supplier performance
+- **Lean team constraints** — no dedicated engineering team; every hour spent on tooling is an hour away from customers
+
+## The Build: Three Systems, One Platform
+
+### Custom Inventory Management System
+
+I built a purpose-built inventory management system that went beyond what off-the-shelf solutions offered. The system tracked stock levels across physical and online channels in real time, integrated with supplier APIs for automated reorder points, predicted demand using historical sales data and seasonal patterns, and generated purchase orders automatically when stock fell below thresholds.
+
+### Data-Driven Pricing Engine
+
+Competitive pricing in the cycling industry is ruthless. I developed a pricing engine that crawled competitor websites for pricing data on matching SKUs, applied a margin-based pricing algorithm balancing competitiveness with profitability, automatically adjusted prices based on inventory levels, and tracked price elasticity over time to learn optimal price points.
+
+### Customer Relationship Management
+
+Rather than juggling spreadsheets and email threads, I built a lightweight CRM that unified customer interactions across email, phone, and social media, tracked the full customer lifecycle, automated follow-up sequences for abandoned carts and post-purchase satisfaction, and measured customer acquisition cost and lifetime value.
+
+### Technical Architecture
+
+The entire system was built on a **Python stack**: Django with PostgreSQL for the backend, a Bootstrap-based dashboard for internal use, Celery workers for scheduled tasks (price crawling, reorder calculations), hosted on a Digital Ocean VPS with Docker deployment and a Git-based CI/CD pipeline.
+
+## Results
+
+- Scaled the business from zero to revenue without external funding
+- Custom software replaced 5+ disparate tools with a single integrated platform
+- Dynamic pricing engine improved margins by optimizing price points in real time
+- Automated inventory management reduced stockouts and overstock situations
+- CRM unified customer data and improved repeat purchase rates
+- Entire system was built and operated by a lean team of 1-2 people
+
+## Why This Matters for Engineering Leadership
+
+This experience shaped my approach to engineering in three ways that matter for a CTO role:
+
+**First, business acumen.** I learned that every technical decision flows to the P&L. The pricing engine wasn't a cool project — it was a margin improvement tool. The inventory system wasn't about automation — it was about cash flow. Understanding this connection is what separates a technical leader from a senior engineer.
+
+**Second, resourcefulness.** Building sophisticated systems with limited resources teaches you to prioritize ruthlessly. You don't build for hypothetical scale; you build what moves the needle today and make it easy to evolve tomorrow.
+
+**Third, end-to-end ownership.** I conceived, built, deployed, and operated these systems in production. There was no DevOps team to hand off to, no SRE to page at 2 AM. This ground-level understanding of the full lifecycle informs how I think about platform trade-offs, operational burden, and team empowerment.
+
+The lesson is straightforward: when you understand how software drives business outcomes, you make better decisions about what to build, how to build it, and when to stop.
