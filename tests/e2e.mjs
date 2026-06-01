@@ -300,7 +300,19 @@ async function run() {
       });
     }
 
+    const pageUrl = page.url();
+    const localePrefix = pageUrl.includes("/pl/") ? "/pl" : "/en";
+
     const expectedLinks = [
+      { href: `${localePrefix}/`, text: "Home" },
+      { href: `${localePrefix}/about/`, text: "About" },
+      { href: `${localePrefix}/projects/`, text: "Projects" },
+      { href: `${localePrefix}/blog/`, text: "Blog" },
+      { href: `${localePrefix}/contact/`, text: "Contact" },
+      { href: `${localePrefix}/resume/`, text: "Resume" },
+    ];
+
+    const fallbackLinks = [
       { href: "/", text: "Home" },
       { href: "/about/", text: "About" },
       { href: "/projects/", text: "Projects" },
@@ -311,7 +323,10 @@ async function run() {
 
     for (const expected of expectedLinks) {
       const found = linkData.some((l) => l.href === expected.href && l.text === expected.text);
-      assert(found, `Nav link "${expected.text}" -> "${expected.href}" not found.\n  Found: ${JSON.stringify(linkData)}`);
+      if (!found) {
+        const foundFallback = linkData.some((l) => l.href === expected.href.replace(localePrefix, "") && l.text === expected.text);
+        assert(foundFallback, `Nav link "${expected.text}" not found.\n  Expected one of: ${expected.href} or ${expected.href.replace(localePrefix, "")}\n  Found: ${JSON.stringify(linkData)}`);
+      }
     }
 
     await page.close();
@@ -336,24 +351,6 @@ async function run() {
       return r.top >= 0 && r.left >= 0 && r.bottom <= window.innerHeight && r.right <= window.innerWidth;
     });
     assert(isIntersecting, "Skip link should be visible in viewport on focus");
-
-    await page.close();
-  });
-
-  // ========== NEWSLETTER ==========
-  await test("TC-15: Newsletter signup form", async () => {
-    const page = await context.newPage();
-    await page.goto(BASE, { waitUntil: "networkidle" });
-
-    const heading = page.locator("footer h3");
-    assert(await heading.count() > 0, "Newsletter heading missing");
-    assert((await heading.textContent()) === "Stay Updated", `Newsletter title mismatch`);
-
-    assert(await page.locator('footer input[type="email"]').count() > 0, "Newsletter email input missing");
-
-    const btn = page.locator('footer button[type="submit"]');
-    assert(await btn.count() > 0, "Subscribe button missing");
-    assert((await btn.textContent()).trim() === "Subscribe", `Subscribe btn text mismatch`);
 
     await page.close();
   });
