@@ -20,10 +20,7 @@ export const metadata: Metadata = {
   title: "Sebastian Weszler | Software Engineer",
   description: "Software Engineer | Technology Enthusiast | Problem-Solver. Passionate about using technology to solve problems and improve people's lives.",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    icon: "/favicon.svg",
   },
   openGraph: {
     title: "Sebastian Weszler | Software Engineer",
@@ -43,9 +40,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-  },
-  icons: {
-    icon: "/favicon.svg",
   },
 };
 
