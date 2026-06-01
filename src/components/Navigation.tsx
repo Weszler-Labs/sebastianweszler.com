@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import type { Dict } from "@/lib/i18n-shared";
 import { getT } from "@/lib/i18n-shared";
 import { locales, defaultLocale } from "@/lib/i18n-config";
+import ThemeToggle from "./ThemeToggle";
 
 function getLocaleFromPath(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
@@ -49,6 +50,7 @@ export default function Navigation({ dictionary }: { dictionary?: Dict }) {
           );
         })}
       </ul>
+      <ThemeToggle />
     </nav>
   );
 }
