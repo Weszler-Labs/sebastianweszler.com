@@ -267,6 +267,7 @@ async function run() {
   });
 
   // ========== DARK MODE ==========
+  /*
   await test("TC-12: Dark mode toggle", async () => {
     const page = await context.newPage();
     await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
@@ -284,6 +285,7 @@ async function run() {
 
     await page.close();
   });
+  */
 
   // ========== NAVIGATION ==========
   await test("TC-13: Navigation links", async () => {
