@@ -272,6 +272,7 @@ async function run() {
     await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
 
     const toggle = page.locator('button[aria-label="Toggle theme"]');
+    await toggle.waitFor({ state: "attached", timeout: 5000 }).catch(() => {});
     assert(await toggle.count() > 0, "Theme toggle button missing");
 
     let hasDark = await page.locator("html").evaluate((el) => el.classList.contains("dark"));

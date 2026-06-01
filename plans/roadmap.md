@@ -24,6 +24,7 @@
 ## Milestone 4: Advanced — COMPLETED
 - [x] Analytics dashboard (Plausible integrated)
 - [x] i18n support (English + Polish)
+- [x] Newsletter signup (removed per SEB-74)
 
 ## Recommended Tech Stack
 - **Framework:** Next.js 15+ (App Router)
