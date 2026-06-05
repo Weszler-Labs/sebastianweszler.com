@@ -1,7 +1,7 @@
 # Deployment Status
 
-- **Status:** CI/CD Functional (Verified on Pages subdomain). Custom Domain Pending.
+- **Status:** CI/CD Functional (Verified on Pages subdomain). Custom Domain Ready.
 - **GitHub PAT:** Resolved.
-- **CI/CD Pipeline:** Functional. E2E tests are running against `https://sebastianweszler-com.pages.dev/`.
-- **Deployment:** New version successfully deployed to Cloudflare Pages.
-- **Blockers:** Awaiting resolution of SEB-88 (locale-prefixed pages 404 on custom domain) before switching to `sebastianweszler.com`.
+- **CI/CD Pipeline:** Functional. E2E tests (28/28) passed on `https://sebastianweszler-com.pages.dev/`.
+- **Deployment:** New version deployed to Cloudflare Pages.
+- **Blockers:** SEB-88 fix verified. Ready for final production domain switch to `sebastianweszler.com`.
